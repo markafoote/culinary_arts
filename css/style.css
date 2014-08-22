@@ -1,0 +1,707 @@
+section, header, nav {
+	display: block;
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: 'Asap', sans-serif;
+	font-size: 1em;
+	margin: 8px;
+}
+.wrapper {
+	width: 980px;
+	margin: 0 auto;
+	position: relative;
+}
+header {
+	background: #000;
+	color: #fff;
+	padding: 5px 0;
+	opacity: .8;
+}
+header h1 {
+	display: inline-block;
+}
+header span {
+	font-size: 10px;
+	font-weight: bold;
+}
+header nav {
+	text-align: right;
+	display: inline-block;
+	position: absolute;
+	top: 15px;
+	right:0;
+}
+header #problemPager {
+	display: inline-block;
+	margin: 0 0 0 100px;
+}
+header #problemPager a {
+	cursor: pointer;
+}
+header #problemPager a:nth-of-type(2) {
+	position: relative;
+	overflow: visible;
+}
+header #problemPager a:nth-of-type(2):hover #problemMenu {
+	display: block;
+}
+header #problemPager #problemMenu {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	background: #333;
+	min-width: 150px;
+	text-align: left;
+	padding: 20px;
+	display: none;
+}
+header #problemPager #problemMenu li {
+	display: block;
+}
+header #problemPager #problemMenu li:after {
+	content: '';
+}
+header nav ul {
+	list-style-type: none;
+}
+header nav ul li {
+	display: inline-block;
+}
+header nav ul li a {
+	color: #fff;
+	text-decoration: none;
+}
+header nav ul li:after {
+	content: ' | ';
+}
+header nav ul li:last-of-type:after {
+	content: '';
+}
+body > .wrapper > h1 {
+	color: #069;
+	margin: 10px 0;
+	font-size: 17px;
+	font-weight: normal;
+}
+#overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	background: rgba(0, 0, 0, .6);
+	z-index: 10;
+}
+#overlay div {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	color: #fff;
+	width: 10%;
+	padding: 5px;
+	font-size: 1.2em;
+	font-family: 'Shadows Into Light';
+	text-shadow: 0 0 1px #fff;
+}
+#overlay div span.arrow {
+	float: right;
+	margin-top: -10px;
+	font-size: 2em;
+	-ms-transform:skew(0deg, -20deg) scale(3, .8);
+	-moz-transform:skew(0deg, -20deg) scale(3, .8);
+	-webkit-transform:skew(0deg, -20deg) scale(3, .8);
+	-o-transform:skew(0deg, -20deg) scale(3, .8);
+	transform:skew(0deg, -20deg) scale(3, .8);
+}
+#visual {
+	text-align: center;
+	display: inline-block;
+	width: 70%;
+}
+#visual.overlay {
+	position: relative;
+	z-index: 100;
+	box-shadow: 0 0 1em #fff;
+	overflow: hidden;
+}
+#equivalencyTable {
+	width: 25%;
+	padding-top: 30px;
+	display: inline-block;
+	text-align: center;
+	vertical-align: top;
+}
+#equivalencyTable table {
+	border-collapse: collapse;
+	width: 100%;
+	margin-bottom: 20px;
+}
+#equivalencyTable table td {
+	text-align: left;
+	padding: 5px 10px;
+}
+#equivalencyTable table tr:nth-of-type(n+2) td { 
+	border-top: 1px solid black;
+}
+#equivalencyTable h1 {
+	color: #069;
+	font-size: 20px;
+	font-weight: normal;
+	text-align: left;
+	padding: 5px 10px 15px;
+}
+#problemContainer {
+	box-shadow: 0px 3px 5px 3px rgba(000, 000, 000, .3);
+	border-bottom-width: medium;
+	border-bottom-style: solid;
+	border-bottom-color: #999;
+	margin: 10px 0;
+	padding: 15px 0;
+	position: relative;
+	min-height: 85px;
+}
+.problemSetter {
+	float:left;
+	width:100%;
+}
+.problemSetter h2 {
+	margin-left:20px;
+}
+.problemSetter h3 {
+	margin-left:20px;
+}
+.problemSetter table {
+	margin:20px 20px 20px 40px;
+}
+.problemSetter td {
+	padding:5px 10px;	
+}
+.problemSetter button {
+	padding: 10px 20px;
+	margin-bottom:20px;
+}
+#problem {
+	margin-bottom: 10px;
+	display: inline-block;
+	width: 30%;
+}
+#problem h1 {
+	color: #069;
+	font-size: 15px;
+	font-weight: normal;
+}
+.label {
+	display: inline-block;
+	width: 300px;
+	text-align: right;
+}
+#problem .label + br + .label {
+	margin-top: 35px;
+}
+.measurement {
+	display: inline-block;
+	margin-left: 100px;
+}
+.measurement span, .measurement input {
+	margin-top:10px;
+}
+.measurement input:nth-child(3n+5) {
+	margin-left:26px;
+}
+.value, .unit {
+	display: inline-block;
+	text-align: center;
+	font-family: 'Droid Sans Mono', sans-serif;
+}
+.value  {
+	width: 40px;
+}
+input.value {
+	width: 32px;
+}
+.unit {
+	width: 80px;
+}
+input, button {
+	text-align: right;
+	font-size: 110%;
+}
+input {
+	border-top-width: 5px;
+	border-right-width: 5px;
+	border-bottom-width: 3px;
+	border-left-width: 3px;
+}
+#answer {
+	display: inline-block;
+	width: 55%;
+}
+#answer .helpButton {
+	background: url(images/notepad.png) no-repeat 0 2px,
+		-webkit-linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	background: url(images/notepad.png) no-repeat 0 2px,
+		-moz-linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	background: url(images/notepad.png) no-repeat 0 2px,
+		-o-linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	background: url(images/notepad.png) no-repeat 0 2px,
+		-ms-linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	background: url(images/notepad.png) no-repeat 0 2px,
+		linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	padding: 10px 10px 10px 40px;
+	font-size: .9em;
+}
+.answerButton {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: url(images/ok.png) no-repeat,
+		-webkit-linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	background: url(images/ok.png) no-repeat,
+		-moz-linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	background: url(images/ok.png) no-repeat,
+		-o-linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	background: url(images/ok.png) no-repeat,
+		-ms-linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	background: url(images/ok.png) no-repeat,
+		linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	padding: 10px 10px 10px 40px;
+	font-size: .9em;
+}
+.helpButton, .showMeButton {
+	position: absolute;
+	top: 60px;
+	right: 10px;
+	background: url(images/help.png) no-repeat,
+		-webkit-linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	background: url(images/help.png) no-repeat,
+		-moz-linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	background: url(images/help.png) no-repeat,
+		-o-linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	background: url(images/help.png) no-repeat,
+		-ms-linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	background: url(images/help.png) no-repeat,
+		linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	padding: 10px 10px 10px 40px;
+	font-size: .9em;
+}
+#workbook {
+	opacity: .6;
+}
+#workbook.complete {
+	opacity: 1.0;
+}
+#workbook.overlay {
+	position: relative;
+	z-index: 100;
+	box-shadow: 0 0 1em #fff;
+	opacity: 1.0;
+}
+#workbook .help {
+	display: inline-block;
+	vertical-align: top;
+	margin: -10px 0 20px 30px;
+	padding: 10px;
+	background: #DDD;
+	border-radius: 10px;
+	width: 400px;
+}
+#workbook .help h1 {
+	color: #000;
+	font-weight: normal;
+	font-size: 15px;
+	padding-left: 10px;
+	text-transform: uppercase;
+	text-align: center;
+	border-bottom: 1px solid #333;
+	margin-bottom: 5px;
+}
+#workbook .help h2 {
+	color: #069;
+	font-weight: normal;
+	font-size: 13px;
+	padding-left: 10px;
+	margin: 10px 0;
+}
+#workbook > h1 {
+	color: #069;
+	text-align: center;
+	background: #EEE;
+	font-size: 15px;
+	font-weight: normal;
+	padding: 15px 0;
+}
+#workbookContainer {
+	counter-reset: steps;
+}
+#workbookContainer > section {
+	background: #CCC;
+	padding: 40px 0;
+	position: relative;
+	counter-increment: steps;
+}
+#workbookContainer > section.complete {
+	background: #DDD;
+	padding: 20px 0;
+	border-bottom: 1px solid #BBB;
+}
+#workbookContainer > section.empty {
+	/* use visiblity:hidden instead of display:none so that counter will increment */
+	visibility: hidden;
+	height: 0;
+	overflow: hidden;
+	width: 0;
+	padding: 0;
+	border: none;
+}
+#workbookContainer > section > h2 {
+	color: #069;
+	font-weight: normal;
+	font-size: 15px;
+	padding-left: 10px;
+}
+#workbookContainer > section > h2:before {
+	content: 'Step #' counter(steps) ': ';
+}
+#workbook .complete .label, #workbook .finalAnswer .label {
+	width: 230px;
+}
+#workbook del {
+	opacity: .5;
+}
+#workbook .finalAnswer {
+	background: #BBB;
+	padding: 20px 0;
+}
+.complete h2 .measurement, .finalAnswer h2 .measurement {
+	margin-left: 125px;
+}
+.explanation {
+	display: block;
+	margin-top: 10px;
+}
+table.problemWidget {
+	margin-left:10px;
+	border-collapse: collapse;
+}
+table.problemWidget td {
+	padding: 5px;
+}
+table.problemWidget .operator {
+	font-size: 200%;
+}
+table.problemWidget input {
+	width: 30px;
+	text-align: center;
+}
+table.problemWidget .unit {
+	width: auto;
+}
+.division1 {
+	border-right: medium solid #000;
+}
+.division2, table.division .spacer, table.division .remainder {
+	border-top: medium solid #000;
+}
+table.division .remainderRow {
+	display: none;
+}
+table.addition .answer {
+	border-top: medium solid #000;
+}
+body.wordProblem #answer .unit {
+	width: auto;
+	font-family: inherit;
+}
+span.wordproblem {
+	line-height: 1.8em;
+	text-align: left;
+	padding-left: 10px;
+}
+.ui-dialog-titlebar-close.ui-corner-all {
+	display: none;
+}
+#ruler {
+	background: url(images/ruler.png) repeat-x;
+}
+#ruler > div {
+	overflow: hidden;
+}
+
+/* Drag and Drop */
+#workbook .ui-draggable, table td.droppable span {
+	display: inline-block;
+	padding: 15px;
+	margin: 10px;
+	background: #333;
+	border-radius: 10px;
+	color: #fff;
+	border: 1px solid #999;
+}
+table td.droppable:nth-of-type(2) {
+	border-left: 2px solid #000;
+	border-top: 2px solid #000;
+}
+table td.droppable.empty {
+	width: 50px;
+	height: 18px;
+	padding: 15px;
+	text-align: center;
+}
+table td.droppable span {
+	margin: 2px;
+}
+table.division {
+	border-collapse: collapse;
+}
+table.division td {
+	padding: 5px 10px;
+}
+table.division td.divisionBox {
+	border-left: 1px solid #069;
+	border-top: 1px solid #069;
+}
+table.division td.subtraction {
+	border-top: 1px solid #069;
+}
+table.division .selectable li {
+	list-style-type: none;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	text-align: center;
+	margin: 5px;
+	padding: 5px;
+	background: #eee;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+table.division .selectable li.ui-selected {
+	background: orange !important;
+}
+table.division .selectable li.ui-selecting {
+	background: yellow !important;
+}
+.numberUnit {
+	display: inline-block;
+	text-align: center;
+	vertical-align: top;
+	width: 20px;
+	height: 20px;
+	text-align: center;
+	margin: 5px;
+	padding: 5px;
+	background: #eee;
+}
+.numberUnit input[type=text] {
+	width: 20px;
+	height: 20px;
+	border: none;
+	text-align: center;
+}
+.numberUnit.arrow {
+	background: transparent;
+	font-size: 200%;
+	margin-top: -7px;
+}
+.numberUnit.inactive {
+	opacity: .5;
+}
+.numberUnit:empty {
+	background: transparent;
+}
+#workbook.complete .numberUnit {
+	background: transparent;
+	margin: 0;
+	padding: 0;
+}
+#workbook.complete .numberUnit.arrow {
+	display: none;
+}
+#workbook .helpMessage {
+	position: absolute;
+	bottom: 50px;
+	right: 10px;
+}
+
+span.operationSymbol {
+	display: block;
+	text-align: right;
+	font-size: 2em;
+}
+
+/* Summary Page Styles */
+.summary-wrapper {
+	width: 80%;
+	margin: 0 auto;
+}
+table#problems {
+	border-collapse: collapse;
+	width: 100%;
+	margin: 20px 0;
+	border: 1px solid #000;
+}
+table#problems th {
+	text-align: left;
+	padding: 5px 10px;
+	border-bottom: 1px solid #333;
+}
+table#problems td {
+	padding: 5px 10px;
+	border-bottom: 1px solid #CCC;
+}
+table#problems .totals td {
+	border-bottom: 1px solid #000;
+	border-top: 2px double #333;
+	font-weight: bold;
+}
+table#problems .totals td[colspan="2"] {
+	text-align: right;
+}
+.summary-wrapper table table {
+	border-collapse: collapse;
+	width: 96%;
+}
+.summary-wrapper tr.details {
+	display: none;
+}
+table#problems > tbody > tr {
+	cursor: pointer;
+}
+table#problems > tbody > tr.details {
+	cursor: default;
+	background: #eee;
+}
+table#problems > tbody > tr.details td {
+	border-top: none;
+	border-bottom: none;
+}
+table#problems > tbody > tr.details table {
+	margin: 15px 2%;
+}
+table#problems > tbody > tr.details table td {
+	border: none; 
+}
+table#problems > tbody > tr.details table th {
+	font-weight: normal;
+}
+table#problems > tbody > tr.details table th[colspan] {
+	font-weight: bold;
+	text-align: center;
+}
+
+/* Equivalency Fraction Styles */
+.eqFraction {
+	display: inline-block;
+	margin: 10px;
+}
+.eqFraction .numerator, .eqFraction .denominator {
+	padding: 15px;
+	background: white;
+	text-align: center;
+	display: block;
+}
+.eqFraction .numerator {
+	border-bottom: 2px solid black;
+	border-radius: 10% 10% 0 0;
+}
+.eqFraction .denominator {
+	border-radius: 0 0 10% 10%;
+}
+.eqFraction .numerator.select, .eqFraction .denominator.select {
+	padding: 0;
+}
+.eqFraction select {
+	width: 100%;
+	height: 100%;
+	padding: 14px;
+	background: transparent;
+	border: none;
+	font-size: 16px;
+	font-family: 'Asap', sans-serif;
+}
+.eqFraction select:hover {
+	cursor: pointer;
+}
+.eqFraction .numerator select {
+	border-radius: 10% 10% 0 0;
+}
+.eqFraction .denominator select {
+	border-radius: 0 0 10% 10%;
+}
+
+.help select {
+	padding: 15px;
+	background: white;
+	border: none;
+	border-radius: 10px;
+	width: 80%;
+	margin: 0 10%;
+	font-size: 16px;
+	font-family: 'Asap', sans-serif;
+}
+
+button.yes {
+	background: url(images/plus.png) no-repeat,
+		-webkit-linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	background: url(images/plus.png) no-repeat,
+		-moz-linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	background: url(images/plus.png) no-repeat,
+		-o-linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	background: url(images/plus.png) no-repeat,
+		-ms-linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	background: url(images/plus.png) no-repeat,
+		linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	padding: 10px 10px 10px 40px;
+	font-size: .9em;
+	display: inline-block;
+	margin: 0 25px 0 50px;
+}
+button.no {
+	background: url(images/less.png) no-repeat,
+		-webkit-linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	background: url(images/less.png) no-repeat,
+		-moz-linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	background: url(images/less.png) no-repeat,
+		-o-linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	background: url(images/less.png) no-repeat,
+		-ms-linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	background: url(images/less.png) no-repeat,
+		linear-gradient(bottom, #CCCCCC 20%, #D4D4D4 60%, #E8E8E8 80%);
+	padding: 10px 10px 10px 40px;
+	font-size: .9em;
+	display: inline-block;
+	margin: 0 25px;
+}
+#workbook div.incorrect {
+	background: #333 url(images/warning.png) 15px 25px no-repeat;
+	padding: 20px 30px 20px 60px;
+	margin: 20px 40px;
+	border-radius: 20px;
+	color: white;
+	line-height: 1.5em;
+	border: 1px solid #666;
+}
+span.clickableUnit:hover {
+	cursor: pointer;
+}
+span.clickableUnit.selected {
+	background: green;
+	padding: 5px;
+}
+span.clickableUnit.selected:hover {
+	cursor: default;
+}
+#new_problem_set {
+	padding:10px;
+}

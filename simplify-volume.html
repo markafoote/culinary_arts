@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang=en>
+	<head>
+		<title>Simplify This Volume</title>
+		<!--[if lt IE 9]>
+			<script src=//html5shiv.googlecode.com/svn/trunk/html5.js></script>
+		<![endif]-->
+		<link href=http://fonts.googleapis.com/css?family=Nobile:400,400italic,700,700italic rel=stylesheet>
+		<link href=http://fonts.googleapis.com/css?family=Asap:400,700,400italic rel=stylesheet>
+		<link href=http://fonts.googleapis.com/css?family=Droid+Sans+Mono rel=stylesheet>
+		<link href=http://fonts.googleapis.com/css?family=Shadows+Into+Light rel=stylesheet>
+		<link rel=stylesheet href=jquery-ui-1.8.17.custom/css/ui-lightness/jquery-ui-1.8.17.custom.css>
+		<link rel=stylesheet href=css/style.css>
+		<script src=js/utils.js></script>
+		<script src=js/utils.animation.js></script>
+		<script src=js/utils.navigation.js></script>
+		<script src=js/events.behavior.js></script>
+		<script src=js/events.controller.js></script>
+		<script src=js/widgets.problem.js></script>
+		<script src=js/units.js></script>
+		<script src=js/units.length.js></script>
+		<script src=js/units.volume.js></script>
+		<script src=js/units.weight.js></script>
+		<script src=js/widgets.workbook.js></script>
+      	<script src=js/widgets.fluidVolume_27Jun12_MAF.js></script>
+		<script src=http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js></script>
+		<script src=http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js></script>
+		<script>mathSkills.utils.useSession('simplify');</script>
+	</head>
+	<body>
+		<header class=ui-corner-all>
+			<div class=wrapper>
+				<h1>Math Skills</h1>
+	    		<span>&copy; 2012 Santa Rosa Junior College</span>
+	    		<div id=problemPager>
+		    		<a onclick='mathSkills.nav.goToPreviousPage(); return false;'>&lt;&lt;</a>
+		    		<a><script>
+		    			document.write('Problem '+mathSkills.nav.getCurrentPageNumber()+' of ');
+		    			document.write(mathSkills.nav.getTotalNumberOfPages());
+		    		</script></a>
+		    		<a onclick='mathSkills.nav.goToNextPage(); return false;'>&gt;&gt;</a>
+		    	</div>
+		    	<nav>
+		    		<ul>
+			    		<li><a onclick='mathSkills.nav.goToPage(mathSkills.nav.currentPage + 1); return false;'>Start Problem Over</a></li>
+			    		<li><a onclick='mathSkills.utils.navigation.startOver("simplify");'>New Problem Set</a></li>
+			    	</ul>
+		    	</nav>
+		    </div>
+    	</header>
+    	<div class=wrapper>
+	    	<h1>Simplifying Units of Measurement</h1>
+	    	<section id=visual>
+				<div id=canvasContainer></div>
+			</section>
+			<section id=equivalencyTable></section>
+			<section id=workbook style="display: none;">
+				<h1>Workbook</h1>
+				<div id=workbookContainer></div>
+			</section>
+			<div id=problemContainer>
+				<section id=problem></section>
+				<section id=answer class=panel></section>
+			</div>
+		</div>
+	<script>
+		var volume = new mathSkills.units.Volume(null, { 
+				type: 'randomUnsimplifed', 
+				units: mathSkills.utils.getQueryParameter('units'), 
+				level: mathSkills.utils.getQueryParameter('level'), 
+				offset: mathSkills.utils.getQueryParameter('offset') 
+			}),
+			visual = new mathSkills.widgets.FluidVolume(volume),
+			wb, 
+			finalAnswer;
+		
+		$(function() {
+			wb = new mathSkills.widgets.Workbook('#workbookContainer');
+			wb.addProblems(volume.getSimplificationSteps());
+			$('#problem').html(volume.getUnSimplifiedUnitProblem());
+			$('#answer').html(volume.getSimplicationAnswer().getAnswerWidget());
+			finalAnswer = $('#answer')[0].pojo;
+			finalAnswer.queueBehaviors().activate();
+			$('#equivalencyTable').html(volume.getEquivalencyTable());
+			$('#visual').html(mathSkills.widgets.FluidVolume.prototype.getHtml());
+			$('#visual').on('updateVisual', null, {that: visual}, visual.update);
+		});
+	</script>
+	</body>
+</html>

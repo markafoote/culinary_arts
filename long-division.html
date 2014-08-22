@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang=en>
+	<head>
+		<meta charset=utf-8>
+		<meta http-equiv=X-UA-Compatible content=IE=edge,chrome=1>
+		<title>Math Skills Long Division Test Page</title>
+		<!--[if lt IE 9]>
+			<script src=//html5shiv.googlecode.com/svn/trunk/html5.js></script>
+		<![endif]-->
+		<link href=http://fonts.googleapis.com/css?family=Nobile:400,400italic,700,700italic rel=stylesheet>
+		<link href=http://fonts.googleapis.com/css?family=Asap:400,700,400italic rel=stylesheet>
+		<link href=http://fonts.googleapis.com/css?family=Droid+Sans+Mono rel=stylesheet>
+		<link href=http://fonts.googleapis.com/css?family=Shadows+Into+Light rel=stylesheet>
+		<link rel=stylesheet href=jquery-ui-1.8.17.custom/css/ui-lightness/jquery-ui-1.8.17.custom.css>
+		<link rel=stylesheet href=css/style.css>
+		<script src=http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js></script>
+		<script src=http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js></script>
+		<script src=js/utils.js></script>
+		<script src=js/utils.animation.js></script>
+		<script src=js/utils.navigation.js></script>
+		<script src=js/widgets.problem.js></script>
+		<script src=js/widgets.workbook.js></script>
+		<script src=js/events.behavior.js></script>
+		<script src=js/events.controller.js></script>
+		<script src=js/problems.longDivision.js></script>
+		<script>mathSkills.utils.useSession('long-division');</script>
+	</head>
+	<body>
+		<header class=ui-corner-all>
+			<div class=wrapper>
+				<h1>Math Skills</h1>
+	    		<span>&copy; 2012 Santa Rosa Junior College</span>
+	    		<div id=problemPager>
+		    		<a onclick='mathSkills.nav.goToPreviousPage(); return false;'>&lt;&lt;</a>
+		    		<a><script>
+		    			document.write('Problem '+mathSkills.nav.getCurrentPageNumber()+' of ');
+		    			document.write(mathSkills.nav.getTotalNumberOfPages());
+		    		</script></a>
+		    		<a onclick='mathSkills.nav.goToNextPage(); return false;'>&gt;&gt;</a>
+		    	</div>
+		    	<nav>
+		    		<ul>
+			    		<li><a onclick='mathSkills.nav.goToPage(mathSkills.nav.currentPage + 1); return false;'>Start Problem Over</a></li>
+			    		<li><a onclick='mathSkills.utils.navigation.startOver("long-division");'>New Problem Set</a></li>
+			    	</ul>
+		    	</nav>
+		    </div>
+    	</header>
+    	<div class=wrapper>
+	    	<h1>Long Division</h1>
+	    	<section id=visual>
+				<div id=canvasContainer></div>
+			</section>
+			<section id=equivalencyTable></section>
+			<section id=workbook style="display: none;">
+				<h1>Workbook</h1>
+				<div id=workbookContainer></div>
+			</section>
+			<div id=problemContainer>
+				<section id=problem></section>
+				<section id=answer class=panel></section>
+			</div>
+            <section id=visual></section>
+		</div>
+	<script>
+		var problemLevel = mathSkills.utils.getQueryParameter('level');
+		var units = parseInt(mathSkills.utils.getQueryParameter('units'), 10);
+		var problem = new mathSkills.problems.LongDivision({ 
+			random: {
+				divisorPieces: units || 2,
+				quotientPieces: units + 1 || 3,
+				hasRemainder: true,
+				difficulty: parseInt(problemLevel || 2, 10)
+			} 
+		});
+		
+		$(function() {
+			var wb = new mathSkills.widgets.Workbook('#workbookContainer');
+			wb.addProblems(problem.getWorkbookSteps());
+			$('#problem').html(problem.getProblemText());
+			$('#answer').html(problem.getAnswer().getAnswerWidget());
+			var finalAnswer = $('#answer')[0].pojo;
+			finalAnswer.queueBehaviors().activate();
+		});
+	</script>
+	</body>
+</html>

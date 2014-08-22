@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang=en>
+	<head>
+		<title>Problem Set Page</title>
+		<!--[if lt IE 9]>
+			<script src=//html5shiv.googlecode.com/svn/trunk/html5.js></script>
+		<![endif]-->
+		<link href=http://fonts.googleapis.com/css?family=Nobile:400,400italic,700,700italic rel=stylesheet>
+		<link href=http://fonts.googleapis.com/css?family=Asap:400,700,400italic rel=stylesheet>
+		<link href=http://fonts.googleapis.com/css?family=Droid+Sans+Mono rel=stylesheet>
+		<link href=http://fonts.googleapis.com/css?family=Shadows+Into+Light rel=stylesheet>
+		<link rel=stylesheet href=jquery-ui-1.8.17.custom/css/ui-lightness/jquery-ui-1.8.17.custom.css>
+		<link rel=stylesheet href=css/style.css>
+		<script src=js/utils.js></script>
+		<script src=js/units.js></script>
+		<script src=js/units.length.js></script>
+		<script src=js/units.volume.js></script>
+		<script src=js/units.weight.js></script>
+		<script src=js/utils.navigation.js></script>
+		<script src=http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js></script>
+		<script src=http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js></script>
+		<script>
+			mathSkills.utils.navigation.clearSession();
+			// logic for start button below
+			$(document).ready(function() {
+					$("#problem_set_start").unbind();
+					$("#problem_set_start").click(function(){
+						var argArray = 
+							[scope1 = "simplify_volume",
+							numPages1 = 0,
+							scope2 = "simplify_weight",
+							numPages2 = 0,
+							scope3 = "simplify_length",
+							numPages3 = 0,
+							scope4 = "convert_length",
+							numPages4 = 0,
+							scope5 = "convert_weight",
+							numPages5 = 0,
+							scope6 = "convert_volume",
+							numPages6 = 0,
+							scope7 = "long-division",
+							numPages7 = 0];	
+						argArray[1] = $("#liquid_volume_simplification").val();
+						argArray[3] = $("#weight_simplification").val();
+						argArray[5] = $("#length_simplification").val();
+						argArray[7] = $("#length_conversion").val();
+						argArray[9] = $("#weight_conversion").val();
+						argArray[11] = $("#volume_conversion").val();
+						argArray[13] = $("#long_division").val();
+						//alert ("array in index is: "+JSON.stringify(argArray));
+						
+						function testZeroToTen (argArray) {
+							var resultCheck = 1;
+							for (i=1, arrayLength = argArray.length; i<arrayLength;i+=2){
+								resultCheck = resultCheck && /^[0-9]+$/.test(argArray[i]);								
+							}
+							return resultCheck;
+						}
+						
+						function testMaximumTen (argArray) {
+							var maxCheck = 1;
+							for (i=1, arrayLength = argArray.length; i<arrayLength;i+=2){
+								maxCheck = maxCheck && (argArray[i]<=10);								
+							}
+							return maxCheck;
+						}
+						
+						function testTotal (argArray) {
+							var testTotals = 0;
+							for (i=1, arrayLength = argArray.length; i<arrayLength;i+=2){
+								testTotals = testTotals + argArray[i];								
+							}
+							return testTotals;
+						}
+						
+						var testForInt = testZeroToTen (argArray);
+						var testMaxTen = testMaximumTen(argArray);
+						if (!testForInt||!testMaxTen){
+							alert ("Entries must be whole numbers between zero and ten, inclusive"); 
+						} else if (testTotal (argArray)!=0){
+							mathSkills.utils.useSession(argArray);
+						} else {
+							alert ("At least one problem is required in the set"); 
+						}
+					});
+									   
+			});
+		</script>
+	</head>
+	<body>
+		<header class=ui-corner-all>
+			<div class=wrapper>
+				<h1>Math Skills</h1>
+	    		<span>&copy; 2012 Santa Rosa Junior College</span>
+		    </div>
+    	</header>
+    	<div class=wrapper>
+	    	<h1>MathSkills</h1>
+            <div id=problemContainer class=problemSetter>
+				<h2>Choose a Problem Set</h2>
+                <h3>(Maximum 10 Problems of Each Type)</h3>
+				<table>
+                	<tr>
+					<td>Liquid Volume Simplification</td>
+                    <td><input type="number" min="0" max="10" value="0" id="liquid_volume_simplification"/></td>
+                    </tr>
+                    <tr>
+					<td>Weight Simplification</td>
+                    <td><input type="number" min="0" max="10" value="0" id="weight_simplification"/></td>
+                    </tr>
+                    <tr>
+					<td>Length Simplification</td>
+                    <td><input type="number" min="0" max="10" value="0" id="length_simplification"/></td>
+                    </tr>
+                    <tr>
+					<td>Length Conversion</td>
+                    <td><input type="number" min="0" max="10" value="0" id="length_conversion"/></td>
+                    </tr>
+                     <tr>
+					<td>Weight Conversion</td>
+                    <td><input type="number" min="0" max="10" value="0" id="weight_conversion"/></td>
+                    </tr>
+                     <tr>
+					<td>Volume Conversion</td>
+                    <td><input type="number" min="0" max="10" value="0" id="volume_conversion"/></td>
+                    </tr>
+                    <tr>
+					<td>Long Division</td>
+                    <td><input type="number" min="0" max="10" value="0" id="long_division"/></td>
+                    </tr>
+                    <tr>
+                    <td></td><td></td>
+                    </tr>
+                    <tr>
+                    <td></td><td></td>
+                    </tr>
+                    <td></td>
+                    <td><button type="button" id="problem_set_start" />Start</button></td>
+                    </tr>
+                 </table>				
+			</div>
+		</div>
+	</body>
+</html>

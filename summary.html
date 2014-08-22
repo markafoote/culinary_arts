@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang=en>
+	<head>
+		<title>Set Summary Page</title>
+		<!--[if lt IE 9]>
+			<script src=//html5shiv.googlecode.com/svn/trunk/html5.js></script>
+		<![endif]-->
+		<link href=http://fonts.googleapis.com/css?family=Nobile:400,400italic,700,700italic rel=stylesheet>
+		<link href=http://fonts.googleapis.com/css?family=Asap:400,700,400italic rel=stylesheet>
+		<link href=http://fonts.googleapis.com/css?family=Droid+Sans+Mono rel=stylesheet>
+		<link href=http://fonts.googleapis.com/css?family=Shadows+Into+Light rel=stylesheet>
+		<link rel=stylesheet href=jquery-ui-1.8.17.custom/css/ui-lightness/jquery-ui-1.8.17.custom.css>
+		<link rel=stylesheet href=css/style.css>
+		<script src=js/utils.js></script>
+		<script src=js/utils.navigation.js></script>
+		<script src=http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js></script>
+		<script src=http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js></script>
+		<script>
+			mathSkills.utils.useSession();
+			$(document).ready(function() {
+				$('#new_problem_set').click(function(){
+					  location.href = "index.html";
+					  return false;
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<header class=ui-corner-all>
+			<div class=wrapper>
+				<h1>Math Skills</h1>
+	    		<span>&copy; 2012 Santa Rosa Junior College</span>
+		    </div>
+    	</header>
+    	<div class=wrapper>
+	    	<h1>Problem Set Summary</h1>
+	    	<div class=summary-wrapper>
+		    	<section id=summary>
+		    		<h1 id=totalComplete>You completed <span class=result></span> problems in this set.</h1>
+		    	</section>
+		    	<section id=details>
+		    		<table id=problems>
+		    			<thead>
+		    				<tr><th>#</th><th>Problem</th><th>Score</th><th>Time</th></tr>
+		    			</thead>
+		    			<tbody></tbody>
+		    		</table>
+		    	</section>
+                <section id=returnButton>
+		    		<button type="button" id="new_problem_set" />New Problem Set</button>
+		    	</section>
+		    </div>
+		</div>
+		<script>
+			$(function() {
+				$('#totalComplete .result').html(mathSkills.nav.getTotalCompleted());
+				$('#problems tbody').html(mathSkills.nav.getSetDetails());
+				$('#problems > tbody').append(
+					'<tr class=totals><td colspan=2>Totals</td><td>'+mathSkills.nav.getTotalScore()+'</td><td>'+
+					mathSkills.nav.getTotalTime()+'</td></tr>'
+				);
+				$('#problems > tbody > tr').not('.details').click(function() {
+					if ($(this).next().hasClass('details')) {
+						$(this).next().toggle();
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
